@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: ${APP_NAME}
+  r2dbc:
+    url: r2dbc:postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}?ssl=true
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  rabbitmq:
+    host: ${RABBITMQ_HOST}
+    port: ${RABBITMQ_PORT}
+    username: ${RABBITMQ_USER}
+    password: ${RABBITMQ_PASSWORD}
+
+rabbit:
+  queue-name: transactions
+  exchange-name: transactions
+  routing-key: transactions
+
+logging:
+  level:
+    org.springframework.web: DEBUG
+    org.springframework.data.r2dbc: DEBUG
